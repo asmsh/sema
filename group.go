@@ -335,15 +335,11 @@ func (g *Group) reserveNSuccessWait(
 		}
 
 		// notify another blocked call to check its goal...
-		// if we didn't notify any reserve call successfully, it means that
-		// we unblocked another call, which means that the other call already
-		// updated the counter, so we need to re-loop and check it again,
-		// because if we return and wait for a FreeN call, it might never
-		// come because this call might be the last one.
-		//_, notifiedReserve := g.notifyReserve(blockChan, reserveN)
-		//if !notifiedReserve {
-		//	continue
-		//}
+		// note: if the code below didn't notify any reserve calls, it means
+		// it unblocked another call, which means the other call already
+		// updated the counter, so we need to re-loop and check again.
+		// otherwise, this call might be the last one, and we might end up
+		// waiting for a FreeN call that will never happen.
 
 		// only proceed if there are other pending calls.
 		if int(pending)-reserveN <= 0 {
@@ -359,28 +355,6 @@ func (g *Group) reserveNSuccessWait(
 			// unblock another call.
 			continue
 		}
-	}
-}
-
-func (g *Group) notifyReserve(
-	blockChan chan struct{},
-	excludeN int,
-) (counter uint64, notified bool) {
-	counter = g.counter.Load()
-	pending, _ := counterParts(counter)
-
-	// only proceed if there are other pending calls.
-	if int(pending)-excludeN <= 0 {
-		return counter, false
-	}
-
-	// attempt to wake up a Reserve call, or unblock another that's trying the same.
-	select {
-	case blockChan <- struct{}{}:
-		// woke up 1 blocked Reserve call...
-		return counter, true
-	case <-blockChan:
-		return counter, false
 	}
 }
 
