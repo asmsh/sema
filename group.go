@@ -178,10 +178,10 @@ func (g *Group) Reserve() {
 	g.ReserveN(nil, 1)
 }
 
-// ReserveN increments [Group.ActiveCount] by n, blocking if needed until
-// there's room made available by [Group.Free] or [Group.FreeN] calls,
-// and returns true if the increment was successful, or false if it was
-// aborted via the provided doneChan.
+// ReserveN increments [Group.ActiveCount] by n, blocking if needed, as long
+// as n is within [Group.Size], until there's room made available by [Group.Free]
+// or [Group.FreeN] calls, and returns true if the increment was successful,
+// or false if it was aborted via the provided doneChan.
 //
 // It returns immediately if the [Group.PendingCount] is 0, and there's
 // available room for n (in [Group.ActiveCount] against the [Group.Size]).
