@@ -7,52 +7,52 @@ pkg: github.com/asmsh/sema/benchmarks
 cpu: Apple M2
 BenchmarkWaitGroupUncontended
 BenchmarkWaitGroupUncontended/Uncontended
-BenchmarkWaitGroupUncontended/Uncontended-8         	444735992	         2.664 ns/op	       0 B/op	       0 allocs/op
+BenchmarkWaitGroupUncontended/Uncontended-8         	451437087	         2.368 ns/op	       0 B/op	       0 allocs/op
 BenchmarkWaitGroupUncontended/Uncontended-HighParallelism
-BenchmarkWaitGroupUncontended/Uncontended-HighParallelism-8         	462382617	         2.561 ns/op	       0 B/op	       0 allocs/op
+BenchmarkWaitGroupUncontended/Uncontended-HighParallelism-8         	523620537	         2.721 ns/op	       0 B/op	       0 allocs/op
 BenchmarkSemaGroupUncontended
 BenchmarkSemaGroupUncontended/Uncontended
-BenchmarkSemaGroupUncontended/Uncontended-8                         	27039561	        44.51 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSemaGroupUncontended/Uncontended-8                         	29985943	        40.85 ns/op	       0 B/op	       0 allocs/op
 BenchmarkSemaGroupUncontended/Uncontended-HighParallelism
-BenchmarkSemaGroupUncontended/Uncontended-HighParallelism-8         	26653957	        44.75 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSemaGroupUncontended/Uncontended-HighParallelism-8         	24431175	        42.46 ns/op	       1 B/op	       0 allocs/op
 BenchmarkWaitGroupAddDone
 BenchmarkWaitGroupAddDone/no_work
-BenchmarkWaitGroupAddDone/no_work-8                                 	17774079	        67.54 ns/op	       0 B/op	       0 allocs/op
+BenchmarkWaitGroupAddDone/no_work-8                                 	33426726	        51.13 ns/op	       0 B/op	       0 allocs/op
 BenchmarkWaitGroupAddDone/with_work
-BenchmarkWaitGroupAddDone/with_work-8                               	13681306	        86.09 ns/op	       0 B/op	       0 allocs/op
+BenchmarkWaitGroupAddDone/with_work-8                               	16323069	        83.45 ns/op	       0 B/op	       0 allocs/op
 BenchmarkWaitGroupAddDone/with_work-HighParallelism
-BenchmarkWaitGroupAddDone/with_work-HighParallelism-8               	11923569	        84.76 ns/op	       0 B/op	       0 allocs/op
+BenchmarkWaitGroupAddDone/with_work-HighParallelism-8               	12671455	        79.29 ns/op	       1 B/op	       0 allocs/op
 BenchmarkSemaGroupAddDone
 BenchmarkSemaGroupAddDone/no_work
-BenchmarkSemaGroupAddDone/no_work-8                                 	 4933724	       245.6 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSemaGroupAddDone/no_work-8                                 	13537606	        89.35 ns/op	       0 B/op	       0 allocs/op
 BenchmarkSemaGroupAddDone/with_work
-BenchmarkSemaGroupAddDone/with_work-8                               	 4297702	       286.8 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSemaGroupAddDone/with_work-8                               	11387472	        88.43 ns/op	       0 B/op	       0 allocs/op
 BenchmarkSemaGroupAddDone/with_work-HighParallelism
-BenchmarkSemaGroupAddDone/with_work-HighParallelism-8               	 4066167	       292.5 ns/op	       3 B/op	       0 allocs/op
+BenchmarkSemaGroupAddDone/with_work-HighParallelism-8               	13867542	       107.2 ns/op	       0 B/op	       0 allocs/op
 BenchmarkWaitGroupWait
 BenchmarkWaitGroupWait/no_work
-BenchmarkWaitGroupWait/no_work-8                                    	1000000000	         0.4215 ns/op	       0 B/op	       0 allocs/op
+BenchmarkWaitGroupWait/no_work-8                                    	1000000000	         0.4526 ns/op	       0 B/op	       0 allocs/op
 BenchmarkWaitGroupWait/with_work
-BenchmarkWaitGroupWait/with_work-8                                  	185626333	         6.062 ns/op	       0 B/op	       0 allocs/op
+BenchmarkWaitGroupWait/with_work-8                                  	209462910	         5.642 ns/op	       0 B/op	       0 allocs/op
 BenchmarkWaitGroupWait/with_work-HighParallelism
-BenchmarkWaitGroupWait/with_work-HighParallelism-8                  	188749502	         6.254 ns/op	       0 B/op	       0 allocs/op
+BenchmarkWaitGroupWait/with_work-HighParallelism-8                  	187883845	         6.865 ns/op	       0 B/op	       0 allocs/op
 BenchmarkSemaGroupWait
 BenchmarkSemaGroupWait/no_work
-BenchmarkSemaGroupWait/no_work-8                                    	47804797	        23.85 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSemaGroupWait/no_work-8                                    	50566412	        24.28 ns/op	       0 B/op	       0 allocs/op
 BenchmarkSemaGroupWait/with_work
-BenchmarkSemaGroupWait/with_work-8                                  	24355755	        49.41 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSemaGroupWait/with_work-8                                  	24589449	        48.53 ns/op	       0 B/op	       0 allocs/op
 BenchmarkSemaGroupWait/with_work-HighParallelism
-BenchmarkSemaGroupWait/with_work-HighParallelism-8                  	23944462	        49.73 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSemaGroupWait/with_work-HighParallelism-8                  	25077777	        51.88 ns/op	       0 B/op	       0 allocs/op
 BenchmarkWaitGroupActuallyWait
 BenchmarkWaitGroupActuallyWait/#00
-BenchmarkWaitGroupActuallyWait/#00-8                                	10681387	       115.0 ns/op	      32 B/op	       2 allocs/op
+BenchmarkWaitGroupActuallyWait/#00-8                                	 8557184	       145.2 ns/op	      32 B/op	       2 allocs/op
 BenchmarkWaitGroupActuallyWait/HighParallelism
-BenchmarkWaitGroupActuallyWait/HighParallelism-8                    	 8999552	       122.8 ns/op	      32 B/op	       2 allocs/op
+BenchmarkWaitGroupActuallyWait/HighParallelism-8                    	 9162616	       150.4 ns/op	      32 B/op	       2 allocs/op
 BenchmarkSemaGroupActuallyWait
 BenchmarkSemaGroupActuallyWait/#00
-BenchmarkSemaGroupActuallyWait/#00-8                                	 7234860	       187.4 ns/op	     175 B/op	       2 allocs/op
+BenchmarkSemaGroupActuallyWait/#00-8                                	 8463975	       160.0 ns/op	     175 B/op	       2 allocs/op
 BenchmarkSemaGroupActuallyWait/HighParallelism
-BenchmarkSemaGroupActuallyWait/HighParallelism-8                    	 9562087	       128.6 ns/op	     176 B/op	       3 allocs/op
+BenchmarkSemaGroupActuallyWait/HighParallelism-8                    	 8845641	       146.7 ns/op	     176 B/op	       3 allocs/op
 PASS
 ```
 

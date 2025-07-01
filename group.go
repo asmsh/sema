@@ -226,9 +226,7 @@ func (g *Group) ReserveN(doneChan <-chan struct{}, n int) (reserved bool) {
 	// calls, and the call should succeed right away.
 	size := g.size.Load()
 	if size == 0 {
-		for ok := false; !ok; {
-			_, ok = g.counterUpdate(g.counter.Load(), 0, n)
-		}
+		g.counter.Add(uint64(n))
 
 		return true
 	}
@@ -386,9 +384,7 @@ func (g *Group) TryReserveN(n int) bool {
 	size := g.size.Load()
 	if size == 0 {
 		// no limitation on the Reserve calls, so the call is allowed.
-		for ok := false; !ok; {
-			_, ok = g.counterUpdate(g.counter.Load(), 0, n)
-		}
+		g.counter.Add(uint64(n))
 
 		return true
 	}
@@ -460,17 +456,20 @@ func (g *Group) FreeN(n int) {
 	blockChan := g.blockChan.Load()
 
 	// update the counter, and read its values.
-	var active int32
-	for ok := false; !ok; {
-		counter := g.counter.Load()
-		counter, ok = g.counterUpdate(counter, 0, -n)
-		_, active = counterParts(counter)
-	}
-
-	// notify any blocked ReserveN calls of the counter update,
-	// and make sure the counter values are updated.
 	var pending uint32
-	if blockChan != nil {
+	var active int32
+	if blockChan == nil {
+		counter := g.counter.Add(uint64(-n))
+		active = int32(counter)
+	} else {
+		for ok := false; !ok; {
+			counter := g.counter.Load()
+			counter, ok = g.counterUpdate(counter, 0, -n)
+			_, active = counterParts(counter)
+		}
+
+		// notify any blocked ReserveN calls of the counter update,
+		// and make sure the counter values are updated.
 		counter := g.notifyFree(blockChan.(chan struct{}))
 		pending, _ = counterParts(counter)
 	}
